@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <limits.h>
+#include <errno.h>
 
 #define BUFFER_SIZE 1024
 #define PATH_MAX 4096
@@ -45,6 +46,13 @@ void isatty_check(void);
 void _setenv(char *variable, char *value);
 void remove_comment(char *lineptr);
 bool is_empty_line(char *lineptr);
-void clean_lineptr(char **ptr);
+void clean_lineptr(char *ptr);
+int custom_setenv(char *name, char *value, int overwrite);
+int custom_unsetenv(char *name);
+
+/* parse and execute */
+
+void parse(char *lineptr, char **envp);
+int _isspace(int c);
 
 #endif

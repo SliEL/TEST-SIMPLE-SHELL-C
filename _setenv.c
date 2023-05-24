@@ -9,9 +9,10 @@
 
 void _setenv(char *variable, char *value)
 {
+
 	if (variable != NULL && value != NULL)
 	{
-		if (setenv(variable, value, 1) != 0)
+		if (custom_setenv(variable, value, 1) != 0)
 		{
 			perror("setenv failed!");
 		}

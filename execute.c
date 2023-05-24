@@ -19,6 +19,7 @@ void _execute(char **argv, char **envp)
 {
 	int status;
 	pid_t child_pid;
+	char error_message[100];
 
 	child_pid = fork();
 
@@ -32,11 +33,18 @@ void _execute(char **argv, char **envp)
 	else if (child_pid == 0)
 	{
 		execve(argv[0], argv, envp);
-		/*on success this won't be applied*/
-		perror("./shell");
 		exit(EXIT_FAILURE);
 	}
 	/* wait for the child process to finish */
 	else
+	{
 		wait(&status);
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		{
+			_strcpy(error_message, argv[0]);
+			_strcat(error_message, ": ");
+			_strcat(error_message, strerror(WEXITSTATUS(status)));
+			perror(error_message);
+		}
+	}
 }

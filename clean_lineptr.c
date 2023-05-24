@@ -5,8 +5,8 @@
  * Return: nothing
  */
 
-void clean_lineptr(char **ptr)
+void clean_lineptr(char *ptr)
 {
-	free(*ptr);
-	*ptr = NULL;
+	free(ptr);
+	ptr = NULL;
 }

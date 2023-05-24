@@ -23,12 +23,17 @@ void remove_comment(char *lineptr)
 
 bool is_empty_line(char *lineptr)
 {
-	size_t i, len = _strlen(lineptr);
+	/*Check if the line is empty (contains no characters)*/
+	if (*lineptr == '\0')
+		return (true);
 
-	for (i = 0; i < len; i++)
+	/* Iterate over the characters and check if they are all spaces or tabs*/
+	while (*lineptr != '\0')
 	{
-		if (lineptr[i] != ' ' && lineptr[i] != '\t')
+		if (!(_isspace(*lineptr)))
 			return (false);
+		lineptr++;
 	}
+
 	return (true);
 }

@@ -30,11 +30,11 @@ bool handle_biultins(char *cmd, char *param)
 	{
 		if (param != NULL)
 		{
-			if (unsetenv(param) != 0)
+			if (custom_unsetenv(param) != 0)
 				perror("Unsetenv Failed!");
 		}
 		else
-			perror("Unsetenv missing variable name!");
+			perror("Unsetenv missing variable");
 	}
 	else
 		return (false);
