@@ -9,7 +9,7 @@
 
 bool handle_biultins(char *cmd, char *param)
 {
-	char *Exit = "exit", *cd = "cd";
+	char *Exit = "exit", *cd = "cd", *unsetenv_cmd = "unsetenv";
 
 	if (_strcmp(cmd, Exit) == 0)
 	{
@@ -25,6 +25,16 @@ bool handle_biultins(char *cmd, char *param)
 		{
 			change_directory(param);
 		}
+	}
+	else if (_strcmp(cmd, unsetenv_cmd) == 0)
+	{
+		if (param != NULL)
+		{
+			if (unsetenv(param) != 0)
+				perror("Unsetenv Failed!");
+		}
+		else
+			perror("Unsetenv missing variable name!");
 	}
 	else
 		return (false);

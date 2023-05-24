@@ -41,4 +41,10 @@ char *set_prompt();
 bool is_pipeline_command(const char *cmd);
 void isatty_check(void);
 
+/*biultins functions */
+void _setenv(char *variable, char *value);
+void remove_comment(char *lineptr);
+bool is_empty_line(char *lineptr);
+void clean_lineptr(char **ptr);
+
 #endif
